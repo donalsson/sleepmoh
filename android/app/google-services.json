@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "731107966761",
+    "firebase_url": "https://sleepmoh.firebaseio.com",
+    "project_id": "sleepmoh",
+    "storage_bucket": "sleepmoh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731107966761:android:514c5d0cd62fb5a433c138",
+        "android_client_info": {
+          "package_name": "com.sleepmoh.sleepmoh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731107966761-069tib4abeteqi8u3ff9fk1bt7r7guti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0yzEYj_8dAm9Gd_h10MHLWq87RLob9RI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731107966761-069tib4abeteqi8u3ff9fk1bt7r7guti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,155 @@
+name: sleepmohapp
+description: A new Flutter project.
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.1.1+208
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  intl_translation:
+  flutter_phoenix: ^0.1.0
+  path_provider: ^1.6.18
+  sticky_headers: ^0.1.8
+  floating_action_bubble: ^1.1.2
+  firebase_messaging: ^7.0.3
+  international_phone_input: ^1.0.4
+  http: any
+  card_settings: ^1.15.0
+  flutter_ringtone_player: ^2.0.0
+  image_picker:
+  im_stepper: ^0.1.2+8
+  flutter_google_places: ^0.2.6
+  multi_image_picker: ^4.7.14
+  connectivity: ^0.4.9
+  bottom_navigation_badge: ^1.0.3
+  devicelocale: ^0.3.2
+  cached_network_image:
+  shared_preferences: ^0.5.2
+  cupertino_icons: ^0.1.2
+  shimmer: ^0.0.6
+  transparent_image: ^0.1.0
+  flutter_slidable: ^0.4.9
+  carousel_pro: ^1.0.0
+  simple_animations: ^1.3.3
+  like_button: ^0.1.9
+  percent_indicator: ^1.0.15
+  flutter_rating: ^0.0.2
+  giffy_dialog: ^1.3.0
+  flutter_credit_card:
+  google_maps_flutter: ^0.5.27+1
+  localstorage: ^3.0.1+4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_native_splash: ^0.1.9
+  flutter_launcher_icons: "^0.7.0"
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/logo011.png"
+  image_path_android: "assets/logo011.png"
+  adaptive_icon_background: "assets/logo011.png"
+  adaptive_icon_foreground: "assets/logo011.png"
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  fonts:
+    - family: Sans
+      fonts:
+        - asset: assets/font/OpenSans-Semibold.ttf
+          weight: 600
+        - asset: assets/font/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/font/OpenSans-Light.ttf
+          weight: 200
+    - family: One
+      fonts:
+        - asset: assets/font/HaveHeartOne.ttf
+          weight: 400
+    - family : Berlin
+      fonts:
+        - asset: assets/font/berlin.TTF
+          weight: 600
+    - family : Gotik
+      fonts:
+        - asset: assets/font/GOTHIC.TTF
+          weight: 300
+        - asset: assets/font/gotik.TTF
+          weight: 600
+    - family : Amira
+      fonts:
+        - asset: assets/font/Amira.otf
+          weight: 500
+    - family : Sofia
+      fonts:
+        - asset: assets/font/Sofia/SofiaProBold.otf
+          weight: 900
+        - asset: assets/font/Sofia/SofiaProSemiBold.otf
+          weight: 800
+        - asset: assets/font/Sofia/SofiaProMedium.otf
+          weight: 700
+        - asset: assets/font/Sofia/SofiaProRegular.otf
+          weight: 600
+        - asset: assets/font/Sofia/SofiaProLight.otf
+          weight: 500
+        - asset: assets/font/Sofia/SofiaProExtraLight.otf
+          weight: 400
+        - asset: assets/font/Sofia/SofiaProUltraLight.otf
+          weight: 300
+    - family : category
+      fonts:
+        - asset: assets/custom_icon/ic_category.ttf
+    - family : message
+      fonts:
+        - asset: assets/custom_icon/ic_message.ttf
+    - family : trip
+      fonts:
+        - asset: assets/custom_icon/ic_trip.ttf
+    - family : file
+      fonts:
+        - asset: assets/custom_icon/ic_file.ttf
+    - family : hearth
+      fonts:
+        - asset: assets/custom_icon/ic_hearth.ttf
+    - family : home
+      fonts:
+        - asset: assets/custom_icon/ic_home.ttf
+    - family : profile
+      fonts:
+        - asset: assets/custom_icon/ic_profile.ttf
+
+  assets:
+    - assets/map_style/map_style.txt
+    - assets/image/
+    - assets/image/onBoardingImage/
+    - assets/image/icon/
+    - assets/image/images/
+
+

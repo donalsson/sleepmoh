@@ -1,0 +1,253 @@
+{
+  "@@last_modified": "2020-09-29T10:45:14.232008",
+  "title": "Contact Us",
+  "@title": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passseer": "Contact Us",
+  "@passseer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "valid_com": "Contact Us",
+  "@valid_com": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tel_error": "Contact Us",
+  "@tel_error": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pas_error": "Contact Us",
+  "@pas_error": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passss_error": "Contact Us",
+  "@passss_error": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "compte_error": "Contact Us",
+  "@compte_error": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mon": "Raise Money",
+  "@mon": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rec": "Receive",
+  "@rec": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "set": "Settings",
+  "@set": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "chan": "Change Password",
+  "@chan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lan": "Change Language",
+  "@lan": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loc": "Change Location",
+  "@loc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nos": "Notification Settings",
+  "@nos": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rno": "Received notification",
+  "@rno": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nee": "Received newsletter",
+  "@nee": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "off": "Received Offer Notification",
+  "@off": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "app": "Received App Updates",
+  "@app": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tel": "Enter your Phone",
+  "@tel": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pas": "Enter your password",
+  "@pas": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "con": "Confirm your password",
+  "@con": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "acc": "Home",
+  "@acc": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sen": "Send",
+  "@sen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rece": "Reception",
+  "@rece": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "rem": "Withdrawals",
+  "@rem": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "aval": "Available",
+  "@aval": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "see": "See All",
+  "@see": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tran": "Transactions",
+  "@tran": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "easy": "Send and receive money very easily and securely.",
+  "@easy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gere": "Manage all your accounts easily.",
+  "@gere": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "mobile": "Manage your accounts (bank and / or savings account from your mobile).",
+  "@mobile": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "start": "Start.",
+  "@start": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "well": "Welcome to your financial management application. Made and designed for you !!!.",
+  "@well": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sign": "Signup.",
+  "@sign": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "log": "Login.",
+  "@log": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cont": "Continuous with Google.",
+  "@cont": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "send": "Send in one click.",
+  "@send": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "small": "Make your transactions, anytime, anywhere. ",
+  "@small": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "pass": "Next",
+  "@pass": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "titre0": "Bienvenu sur SmallPocket",
+  "@titre0": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "descrip0": "Faites vos reservation avec cmmm",
+  "@descrip0": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "btnsubmit": "Submit",
+  "@btnsubmit": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "locale": "en",
+  "@locale": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lblname": "Name",
+  "@lblname": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lblphone": "Phone",
+  "@lblphone": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lblemail": "Email",
+  "@lblemail": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "dooo": "Email",
+  "@dooo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "fredy": "Email",
+  "@fredy": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "gg": "Email",
+  "@gg": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "tt": "Email",
+  "@tt": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
