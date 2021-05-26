@@ -8,6 +8,7 @@ import 'package:sleepmohapp/core/preference.dart';
  * profile: https://github.com/lohanidamodar
   */
 import 'package:sleepmohapp/core/util.dart';
+import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:flutter/material.dart';
 import 'package:sleepmohapp/core/assets.dart';
 import 'package:sleepmohapp/DataSample/UserMod.dart';
@@ -25,7 +26,6 @@ class SettingsOnePage extends StatefulWidget {
   @override
   _SettingsOnePageState createState() => _SettingsOnePageState();
 }
-var userinfos = new List<UserMod>(); 
 var compteU;
 enum Langue { fran, angla }
 class _SettingsOnePageState extends State<SettingsOnePage> {
@@ -43,17 +43,10 @@ void initSaveData () async {
     final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
 compteU = false;
 
-   await SharedPreferencesClass.restoreuser("userinfos").then((value) {
-   setState(() {
-     if(value != ""){
-compteU = true;
-      Iterable list0 = jsonDecode(value);
-        userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
-     log('user_value :' + value);
-     }
-     
-   });
-     });
+  if (globals.userinfos != null) {
+          compteU = true;
+        }
+
 }
   Brightness _getBrightness() {
      return _dark ? Brightness.dark : Brightness.light;
@@ -95,7 +88,7 @@ bool _isChecked = true;
               onTap: () {
                 Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (_, __, ___) => new editProfile(
-                      userinfo: userinfos[0],
+                      userinfo: globals.userinfos,
                     ),
                     transitionDuration: Duration(milliseconds: 600),
                     transitionsBuilder:
@@ -115,7 +108,7 @@ bool _isChecked = true;
                       borderRadius: BorderRadius.all(Radius.circular(50.0)),
                       image: DecorationImage(
                         image: CachedNetworkImageProvider(
-                        "https://www.sleepmoh.com/manager/avatars/" + userinfos[0].avatar
+                        "https://www.sleepmoh.com/manager/avatars/" + globals.userinfos.avatar
                        ),
                       )),
                 ),
@@ -179,7 +172,7 @@ bool _isChecked = true;
                       onTap: () {
                          Navigator.of(context).push(PageRouteBuilder(
                     pageBuilder: (_, __, ___) => new editProfile(
-                      userinfo: userinfos[0],
+                      userinfo: globals.userinfos,
                     ),
                     transitionDuration: Duration(milliseconds: 600),
                     transitionsBuilder:
@@ -191,14 +184,14 @@ bool _isChecked = true;
                     }));
                       },
                       title: Text(
-                        userinfos[0].nom,
+                        globals.userinfos.nom,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       leading: CircleAvatar(
-                        backgroundImage: CachedNetworkImageProvider("https://www.sleepmoh.com/manager/avatars/" + userinfos[0].avatar),
+                        backgroundImage: CachedNetworkImageProvider("https://www.sleepmoh.com/manager/avatars/" + globals.userinfos.avatar),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -439,6 +432,7 @@ bool _isChecked = true;
                             color: PaypalColors.LightBlue,
                             onPressed: (){
                                   SharedPreferencesClass.save("userinfos", "");
+                                  globals.userinfos = null;
                                   Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(builder: (context) => new bottomNavBar()),

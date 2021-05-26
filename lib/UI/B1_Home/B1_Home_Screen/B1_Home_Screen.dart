@@ -28,13 +28,15 @@ import 'package:sleepmohapp/core/preference.dart';
 import 'package:sleepmohapp/core/util.dart';
 import 'editProfile.dart';
 
+import 'package:sleepmohapp/core/global.dart' as globals;
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
 String currentLocale;
-var userinfos = new List<UserMod>();
+//var userinfos = new List<UserMod>();
 var compteU;
 var listHotels = initlistHotel.map((model) => Hotelht.fromJson(model)).toList();
 var listHebergements =
@@ -59,17 +61,10 @@ class _HomeState extends State<Home> {
   void initSaveData() async {
     final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     compteU = false;
-
-    await SharedPreferencesClass.restoreuser("userinfos").then((value) {
-      setState(() {
-        if (value != "") {
+    
+        if (globals.userinfos != null) {
           compteU = true;
-          Iterable list0 = jsonDecode(value);
-          userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
-          log('user_value :' + value);
         }
-      });
-    });
 
     setState(() {
       //  log("message");
@@ -118,7 +113,7 @@ class _HomeState extends State<Home> {
                   onTap: () {
                     Navigator.of(context).push(PageRouteBuilder(
                         pageBuilder: (_, __, ___) => new editProfile(
-                              userinfo: userinfos[0],
+                              userinfo: globals.userinfos,
                             ),
                         transitionDuration: Duration(milliseconds: 600),
                         transitionsBuilder:
@@ -139,7 +134,7 @@ class _HomeState extends State<Home> {
                           image: DecorationImage(
                               image: CachedNetworkImageProvider(
                                   "https://www.sleepmoh.com/manager/avatars/" +
-                                      userinfos[0].avatar),
+                                      globals.userinfos.avatar),
                               fit: BoxFit.cover)),
                     ),
                   ),

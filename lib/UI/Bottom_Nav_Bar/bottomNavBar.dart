@@ -18,6 +18,7 @@ import 'package:sleepmohapp/UI/settings1.dart';
 import 'package:sleepmohapp/UI/IntroApps/addpropoerti.dart';
 import 'package:sleepmohapp/core/preference.dart';
 import 'package:sleepmohapp/core/util.dart';
+import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:bottom_navigation_badge/bottom_navigation_badge.dart';
 import 'package:sleepmohapp/DataSample/ConversMod.dart';
 import 'package:sleepmohapp/DataSample/message_cloud.dart';
@@ -126,7 +127,7 @@ class _bottomNavBarState extends State<bottomNavBar>
         setState(() {
           FlutterRingtonePlayer.playNotification();
           i = i + 1;
-          HttpPostRequest.getAllConvers(userinfos[0].login)
+          HttpPostRequest.getAllConvers(globals.userinfos.login)
               .then((List<ConversMod> result) {
             //  print(result);
           });
@@ -157,15 +158,10 @@ class _bottomNavBarState extends State<bottomNavBar>
   }
 
   void initSaveData() async {
-    await SharedPreferencesClass.restoreuser("userinfos").then((value) {
-      setState(() {
-        if (value != "") {
+
+     if (globals.userinfos != null) {
           compteU = true;
-          Iterable list0 = jsonDecode(value);
-          userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
         }
-      });
-    });
 
     await SharedPreferencesClass.restoreuser("listConversation").then((value) {
       //log('listConversation :' + value);
@@ -241,7 +237,7 @@ class _bottomNavBarState extends State<bottomNavBar>
                           context,
                           new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  Addpropertie(userinfos[0])));
+                                  Addpropertie(globals.userinfos)));
                       _animationController.reverse();
                     },
                   ),
@@ -257,7 +253,7 @@ class _bottomNavBarState extends State<bottomNavBar>
                           context,
                           new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  Listprouser(userinfos[0])));
+                                  Listprouser(globals.userinfos)));
                       _animationController.reverse();
                     },
                   ),

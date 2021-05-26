@@ -5,11 +5,14 @@ import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.Dart' as http;
+
+import 'global.dart' as globals;
 import 'package:sleepmohapp/DataSample/HebergementsModel.dart';
 import 'package:sleepmohapp/DataSample/HotelModel.dart';
 import 'package:sleepmohapp/DataSample/ImagesModel.dart';
 import 'package:sleepmohapp/DataSample/ImmobModel.dart';
 import 'package:sleepmohapp/DataSample/EntreMod.dart';
+import 'package:sleepmohapp/DataSample/UserMod.dart';
 import 'package:sleepmohapp/DataSample/ConversMod.dart';
 import 'package:sleepmohapp/DataSample/MaisonModel.dart';
 import 'package:sleepmohapp/DataSample/TerrainModel.dart';
@@ -377,6 +380,11 @@ Map data;
         print(response.body);
         if (response.body != "" && response.body != "exit") {
           SharedPreferencesClass.save("userinfos", response.body);
+           var userinfos = new List<UserMod>();
+           
+      Iterable list0 = jsonDecode(response.body);
+       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
+          globals.userinfos = userinfos[0];
           return response.body;
         } else {
           return response.body;
@@ -393,9 +401,7 @@ Map data;
     // String urli = 'https://small-pocket.herokuapp.com/api/v1/auth/sign_in';
     // var url = '${urli}ocr';
     // var bytes = image.readAsBytesSync();
-    print(log);
-    print("log");
-    print(password0);
+   
     http.Response response = await http
         .post('https://sleepmoh.com/http_flutter.php', body: <String, String>{
       "action": "login_phone",
@@ -403,17 +409,18 @@ Map data;
       "pass0": password0
     });
     if (response.statusCode == 200) {
-      print(response.body);
-      HttpPostRequest.getAllConvers(log).then((List<ConversMod> result) {
-        // log('savelistTot-Hotel');
-        print(response.body);
+     
         if (response.body != "" && response.body != "exit") {
           SharedPreferencesClass.save("userinfos", response.body);
+          HttpPostRequest.getAllConvers(log).then((List<ConversMod> result) {
+        // log('savelistTot-Hotel');
+      
+      });
           return response.body;
         } else {
           return response.body;
         }
-      });
+     /* */
     } else {
       return "error";
       //  throw Exception('Failed to load album');

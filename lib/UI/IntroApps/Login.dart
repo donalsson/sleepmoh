@@ -1,23 +1,26 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sleepmohapp/Library/SupportingLibrary/Animation/FadeAnimation.dart';
 import 'package:sleepmohapp/Library/SupportingLibrary/Animation/LoginAnimation.dart';
 import 'package:sleepmohapp/core/localizations.dart';
+import 'package:sleepmohapp/DataSample/UserMod.dart';
 import 'SignUp.dart';
 import 'package:international_phone_input/international_phone_input.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:sleepmohapp/core/httpreq.dart';
 
 import 'package:carousel_pro/carousel_pro.dart';
-import 'dart:async';
 import 'dart:ui';
 import 'package:sleepmohapp/core/util.dart';
+import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:sleepmohapp/UI/Bottom_Nav_Bar/bottomNavBar.dart';
 
-import 'dart:developer';
-import 'dart:io';
 
 class Login extends StatefulWidget {
   @override
@@ -703,14 +706,23 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
             // _displayDialog(context, confirmedNumber);
 
             sucessTansaction();
-            sleep(const Duration(seconds: 20));
-            Navigator.pushNamed(context, '/startapp');
+           // sleep(const Duration(seconds: 20));
+          //  Navigator.pushNamed(context, '/startapp');
 
-            /* Navigator.pushAndRemoveUntil(
+setState(() {
+   var userinfos = new List<UserMod>();
+           print("eeeee:::" + result);
+      Iterable list0 = jsonDecode(result);
+       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
+          globals.userinfos = userinfos[0];
+});
+print("global" + globals.userinfos.telephone);
+
+             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (_) => new bottomNavBar()),
               (Route<dynamic> route) => false,
-            );*/
+            );
           }
         }
       });

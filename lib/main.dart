@@ -25,6 +25,7 @@ import 'package:sleepmohapp/DataSample/UserMod.dart';
 import 'UI/Bottom_Nav_Bar/bottomNavBar.dart';
 import 'core/LocaleHelper.dart';
 import 'core/preference.dart';
+import 'core/global.dart' as globals;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,8 +48,8 @@ void main() async {
       log('value');
       log(value);
       Iterable list0 = jsonDecode(value);
-      userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
-
+       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
+       globals.userinfos = userinfos[0];
       HttpPostRequest.getAllHebergementsUser(userinfos[0].idu)
           .then((List<HerbergemntMod> result) {
         if (result.length > 5) {
@@ -58,7 +59,6 @@ void main() async {
       });
       HttpPostRequest.getAllConvers(userinfos[0].login)
           .then((List<ConversMod> result) {
-        // log('savelistTot-Hotel');
         if (result.length > 0) {
           log('savelist-Converssations');
           // SharedPreferencesClass.save('listHotel1', result);
@@ -71,17 +71,15 @@ void main() async {
     SharedPreferencesClass.save("initial", true);
     if (value) {
       HttpPostRequest.getAllHotels().then((List<Hotelht> result) {
-        // log('savelistTot-Hotel');
+       
         if (result.length > 5) {
           log('savelistTot-Hotel');
-          // SharedPreferencesClass.save('listHotel1', result);
         }
       });
 
       HttpPostRequest.getAllTourisme().then((List<Tourisme> result) {
         if (result.length > 5) {
           log('savelistTot-Tourisme');
-          // SharedPreferencesClass.save('listHotel1', result);
         }
       });
 

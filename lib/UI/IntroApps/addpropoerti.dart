@@ -745,14 +745,14 @@ class _AddpropertieState extends State<Addpropertie>
                             },
                             child: Padding(
                                 padding: EdgeInsets.only(
-                                    top: 35.0, left: 15.0, bottom: 10.0),
+                                    top: 50.0, left: 15.0, bottom: 10.0),
                                 child: Icon(
                                   Icons.clear,
                                   size: 30.0,
                                 ))),
                         Padding(
                           padding: EdgeInsets.only(
-                              top: 35.0, left: 30.0, right: 15.0, bottom: 10),
+                              top: 50.0, left: 30.0, right: 15.0, bottom: 10),
                           child: Text(
                             "Ajout d'une Propriété",
                             style: TextStyle(
@@ -819,7 +819,7 @@ class _AddpropertieState extends State<Addpropertie>
                     ),
                     header(),
                     Container(
-                      height: 370.0,
+                      height: MediaQuery.of(context).size.height - 470,
                       child: ListView(children: <Widget>[
                         Stack(
                             alignment: AlignmentDirectional.bottomCenter,
@@ -831,7 +831,7 @@ class _AddpropertieState extends State<Addpropertie>
                       ]),
                     ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 0.0),
+                      margin: const EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
                       ),
