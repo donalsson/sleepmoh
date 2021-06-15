@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sleepmohapp/core/localizations.dart';
 import 'package:sleepmohapp/core/preference.dart';
 
+import 'package:sleepmohapp/core/global.dart' as globals;
 
 class travelGuide extends StatefulWidget {
  
@@ -376,7 +377,6 @@ class messageList extends StatelessWidget {
                   name: convers.msgdis, 
                   nom: convers.nomdis, 
                   idconvers: convers.id,
-                  userinfos: userinfos[0],
                   photoProfile: convers.taille, 
                   idbien: convers.dis1, 
                   typeb: convers.predis,                  
@@ -388,7 +388,6 @@ class messageList extends StatelessWidget {
                   name: convers.iddis,
                   idconvers: convers.id,
                   nom: convers.nomdis,
-                  userinfos: userinfos[0],
                   photoProfile: convers.taille, 
                   idbien: convers.dis1, 
                   typeb: convers.predis, 

@@ -188,8 +188,7 @@ class HttpPostRequest {
         body: <String, String>{"action": 'getdiscutions', "nbr": number});
     //  log("httpreq");
     if (response.statusCode == 200) {
-      print("nous ys sommes");
-      print(number);
+     log(response.body);
 
       getAllMessages(number);
       // log('savelistTot-Hotel');
@@ -375,21 +374,28 @@ Map data;
       "pays": code
     });
     if (response.statusCode == 200) {
-      HttpPostRequest.getAllConvers(log).then((List<ConversMod> result) {
+      
         // log('savelistTot-Hotel');
         print(response.body);
-        if (response.body != "" && response.body != "exit") {
+       if (response.body != "" && response.body != "exit") {
+         HttpPostRequest.getAllConvers(log).then((List<ConversMod> result) {
+          /*
           SharedPreferencesClass.save("userinfos", response.body);
            var userinfos = new List<UserMod>();
            
       Iterable list0 = jsonDecode(response.body);
        userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
           globals.userinfos = userinfos[0];
+
+          */
+          
+          });
           return response.body;
+          
         } else {
           return response.body;
         }
-      });
+        
     } else {
       return "error";
       //  throw Exception('Failed to load album');

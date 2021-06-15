@@ -9,17 +9,16 @@ import 'package:intl/intl.dart';
 import 'package:sleepmohapp/DataSample/message_cloud.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sleepmohapp/core/preference.dart';
+import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:sleepmohapp/DataSample/MessageTchaMod.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class chatting extends StatefulWidget {
   String name, nom, photoProfile, messages, idconvers, idbien, typeb;
-  UserMod userinfos;
   chatting(
       {this.name,
       this.nom,
-      this.userinfos,
       this.messages,
       this.photoProfile,
       this.idconvers,
@@ -37,7 +36,7 @@ class _chattingState extends State<chatting> with TickerProviderStateMixin {
 
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final List<Message> messages = [];
-
+  UserMod userinfos;
   int currentTab = 0;
   int i = 0;
   List<Widget> screens = [];
@@ -50,7 +49,6 @@ class _chattingState extends State<chatting> with TickerProviderStateMixin {
     log("widget.name");
     print(widget.name);
     log("tellll");
-    print(widget.userinfos.telephone);
     initSaveData();
 
     _animationController = AnimationController(
@@ -91,7 +89,7 @@ class _chattingState extends State<chatting> with TickerProviderStateMixin {
           Msg msg = new Msg(
             txt: notification['body'],
             type: notification['title'],
-            type1: widget.userinfos.login,
+            type1: userinfos.login,
             heure: formattedDate,
             animationController: new AnimationController(
                 vsync: this, duration: new Duration(milliseconds: 800)),
@@ -129,10 +127,11 @@ class _chattingState extends State<chatting> with TickerProviderStateMixin {
     final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
 
     await SharedPreferencesClass.restoreuser("listMessages").then((value) {
+      log(value);
       setState(() {
-        //  log("vall" + value);
+        userinfos = globals.userinfos;
         if (value != "") {
-//log(value);
+log(value);
           Iterable list0 = jsonDecode(value);
           _messagesdata =
               list0.map((model) => MessageTchaMod.fromJson(model)).toList();
@@ -151,7 +150,7 @@ _messagesdata.sort(sortById);*/
             Msg msg = new Msg(
               txt: _messagesdata[i].message,
               type: _messagesdata[i].iduser,
-              type1: widget.userinfos.login,
+              type1: userinfos.login,
               heure: _messagesdata[i].heuremessage,
               animationController: new AnimationController(
                   vsync: this, duration: new Duration(milliseconds: 800)),
@@ -379,10 +378,10 @@ SingleChildScrollView(
     log("rrrr");
 
     HttpPostRequest.create_con_request(
-            widget.userinfos.login,
+            userinfos.login,
             txt,
-            widget.userinfos.nom,
-            widget.userinfos.avatar,
+            userinfos.nom,
+            userinfos.avatar,
             widget.idbien,
             widget.name,
             widget.typeb)
@@ -417,8 +416,8 @@ SingleChildScrollView(
 
     Msg msg = new Msg(
       txt: txt,
-      type: widget.userinfos.login,
-      type1: widget.userinfos.login,
+      type: userinfos.login,
+      type1: userinfos.login,
       heure: formattedDate,
       animationController: new AnimationController(
           vsync: this, duration: new Duration(milliseconds: 800)),

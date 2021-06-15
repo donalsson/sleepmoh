@@ -25,6 +25,12 @@ class SharedPreferencesClass {
     return (sharedPrefs.get(key) ?? 'fr');
   }
 
+static Future savenull(String key) async {
+    final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
+   // sharedPrefs.setBool('initialized', true);
+    return (sharedPrefs.get(key) ?? 'fr');
+  }
+
   static save(String key, dynamic value) async {
     final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
     if (value is bool) {

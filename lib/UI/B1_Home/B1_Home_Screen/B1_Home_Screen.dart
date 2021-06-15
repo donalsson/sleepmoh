@@ -54,17 +54,24 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+setState(() {
 
+    compteU = false;
+  
+        if (globals.userinfos != null) {
+          compteU = true;
+        }else{
+           compteU = false;
+  
+        }
+});
     initSaveData();
   }
 
   void initSaveData() async {
     final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
-    compteU = false;
     
-        if (globals.userinfos != null) {
-          compteU = true;
-        }
+    
 
     setState(() {
       //  log("message");

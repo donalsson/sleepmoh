@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
 import 'dart:math';
@@ -11,8 +12,10 @@ import 'package:sleepmohapp/Library/SupportingLibrary/Animation/LoginAnimation.d
 import 'package:sleepmohapp/UI/IntroApps/Login.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:sleepmohapp/core/httpreq.dart';
-
+import 'package:sleepmohapp/core/global.dart' as globals;
+import 'package:sleepmohapp/core/preference.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:sleepmohapp/DataSample/UserMod.dart';
 import 'package:sleepmohapp/UI/Bottom_Nav_Bar/bottomNavBar.dart';
 import 'package:sleepmohapp/core/localizations.dart';
 import 'package:sleepmohapp/core/util.dart';
@@ -30,6 +33,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
   @override
 
   //Animation Declaration
+  var userinfos = new List<UserMod>();
   AnimationController sanimationController;
   String phoneNumber = '';
   String _password = '';
@@ -354,7 +358,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
     }
   }
 
-  _displayDialog(BuildContext context, phone) async {
+  _displayDialog(BuildContext context, phone, result) async {
     return showDialog(
         context: context,
         barrierDismissible: false,
@@ -370,7 +374,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
               textAlign: TextAlign.center,
             ),
             content: Container(
-                height: 150.0,
+                height: 160.0,
                 width: double.infinity,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -400,7 +404,6 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                       ),
                       InkWell(
                         onTap: () {
-                          _timer.cancel();
                           Navigator.of(context).pop();
                         },
                         child: Padding(
@@ -421,9 +424,10 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                           validator: validateName,
                           controller: texttt,
                           onChanged: (text) {
-                            print(text.length);
+                            print(text.toString());
+                            print(code.toString());
                             if (text.toString() == code.toString()) {
-                              _validateInputs10();
+                              _validateInputs11(result);
                             }
                           },
                           decoration: InputDecoration(
@@ -859,19 +863,16 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
     if (password == null || password.isEmpty) {
       return false;
     }
-
+/*
     bool hasUppercase = password.contains(new RegExp(r'[A-Z]'));
     bool hasDigits = password.contains(new RegExp(r'[0-9]'));
     bool hasLowercase = password.contains(new RegExp(r'[a-z]'));
     bool hasSpecialCharacters =
         password.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+        */
     bool hasMinLength = password.length > minLength;
 
-    return hasDigits &
-        hasUppercase &
-        hasLowercase &
-        hasSpecialCharacters &
-        hasMinLength;
+    return  hasMinLength;
   }
 
   String validateEmail(String value) {
@@ -897,8 +898,12 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
     if (_formkey0.currentState.validate()) {
 //    If all data are correct then save data to out variables
       _formkey0.currentState.save();
-      _displayDialog(context, confirmedNumber);
+
+      _validateInputs10();
+   //   _displayDialog(context, confirmedNumber);
       print(code);
+
+      /*
       HttpPostRequest.sendMessage(confirmedNumber, code)
           .then((String result) async {
         // initPlatformState(code);
@@ -918,7 +923,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
           }
         }
       });
-
+*/
       //widget.notifyParent();
       //log(_email);
     } else {
@@ -929,8 +934,29 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
     }
   }
 
+  void _validateInputs11(result) {
+
+ Navigator.of(context).pop();
+    startPayment();
+    
+    netErrorTransaction();
+      Navigator.of(context).pop();
+                               SharedPreferencesClass.save("userinfos", result);
+                               setState(() {
+                                 
+                                globals.userinfos = userinfos[0];
+                               });
+
+                               sucessTansaction();
+
+                                 Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => new bottomNavBar()),
+                                  (Route<dynamic> route) => false,
+                                );
+  }
   void _validateInputs10() {
-    Navigator.of(context).pop();
+   // Navigator.of(context).pop();
 //    If all data are correct then save data to out variables
 
     startPayment();
@@ -939,6 +965,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
     HttpPostRequest.register_request(
             phoneNumber, confirmedNumber, phoneIsoCode, _name, _password0)
         .then((String result) {
+        print("print ::" + result.toString());
       if (result == "error") {
         errorTransaction();
       } else {
@@ -948,15 +975,27 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
           // log('result'+ result);
           // Navigator.pop(context);
           //pour le compte existant  widget.compteE();
-          // _displayDialog(context, confirmedNumber);
+          _displayDialog(context, confirmedNumber, result);
+          
+      Iterable list0 = jsonDecode(result);
+       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
+   /*
+          SharedPreferencesClass.save("userinfos", response.body);
+           var userinfos = new List<UserMod>();
+           
+      Iterable list0 = jsonDecode(response.body);
+       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
+          globals.userinfos = userinfos[0];
 
-          sucessTansaction();
-
+          */
+        //  sucessTansaction();
+/*
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => new bottomNavBar()),
             (Route<dynamic> route) => false,
           );
+          */
         }
       }
     });

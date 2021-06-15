@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+
 import 'package:sleepmohapp/DataSample/ConversMod.dart';
 import 'package:flutter/material.dart';
 import 'package:sleepmohapp/UI/B1_Home/B1_Home_Screen/B1_Home_Screen.dart';
@@ -11,7 +12,7 @@ import 'package:sleepmohapp/UI/B3_Trips/B3_TripScreen.dart';
 import 'package:sleepmohapp/UI/B3_Trips/exploreTrip.dart';
 import 'package:sleepmohapp/UI/B4_Favorite/B4_FavoriteScreen.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
-
+import 'package:badges/badges.dart';
 import 'package:sleepmohapp/core/httpreq.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sleepmohapp/UI/settings1.dart';
@@ -21,6 +22,9 @@ import 'package:sleepmohapp/core/util.dart';
 import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:bottom_navigation_badge/bottom_navigation_badge.dart';
 import 'package:sleepmohapp/DataSample/ConversMod.dart';
+
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:sleepmohapp/DataSample/message_cloud.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
@@ -39,7 +43,7 @@ var userinfos = new List<UserMod>();
 class _bottomNavBarState extends State<bottomNavBar>
     with SingleTickerProviderStateMixin {
   bool isOpened = false;
-
+ AudioCache audioCache = AudioCache();
   Animation<Color> _buttonColor;
   Animation<double> _animateIcon;
   Animation<double> _translateButton;
@@ -48,38 +52,7 @@ class _bottomNavBarState extends State<bottomNavBar>
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  List<BottomNavigationBarItem> items = [
-    BottomNavigationBarItem(
-        icon: Icon(
-          IconData(0xe900, fontFamily: 'home'),
-          color: PaypalColors.Primary,
-        ),
-        title: Text("Home")),
-    BottomNavigationBarItem(
-        icon: Icon(
-          IconData(0xe900, fontFamily: 'message'),
-          color: PaypalColors.Primary,
-        ),
-        title: Text("Notifications")),
-    BottomNavigationBarItem(
-        icon: Icon(
-          IconData(0xe900, fontFamily: 'trip'),
-          color: PaypalColors.Primary,
-        ),
-        title: Text("Notifications")),
-    BottomNavigationBarItem(
-        icon: Icon(
-          IconData(0xe900, fontFamily: 'hearth'),
-          color: PaypalColors.Primary,
-        ),
-        title: Text("Notifications")),
-    BottomNavigationBarItem(
-        icon: Icon(
-          IconData(0xe900, fontFamily: 'profile'),
-          color: PaypalColors.Primary,
-        ),
-        title: Text("Profile"))
-  ];
+  
   BottomNavigationBadge badger = new BottomNavigationBadge(
       backgroundColor: Colors.red,
       badgeShape: BottomNavigationBadgeShape.circle,
@@ -114,6 +87,7 @@ class _bottomNavBarState extends State<bottomNavBar>
 
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
+        playLocalAsset();
         print("onMessage: $message");
         await SharedPreferencesClass.restoreuser("userinfos").then((value) {
           setState(() {
@@ -131,7 +105,7 @@ class _bottomNavBarState extends State<bottomNavBar>
               .then((List<ConversMod> result) {
             //  print(result);
           });
-          items = badger.setBadge(items, i.toString(), 1);
+        //  items = badger.setBadge(items, i.toString(), 1);
 
           messages.add(Message(
               title: notification['title'], body: notification['body']));
@@ -157,6 +131,10 @@ class _bottomNavBarState extends State<bottomNavBar>
         const IosNotificationSettings(sound: true, badge: true, alert: true));
   }
 
+ Future<AudioPlayer> playLocalAsset() async {
+    audioCache.play('notif.mp3');
+  }
+
   void initSaveData() async {
 
      if (globals.userinfos != null) {
@@ -164,8 +142,8 @@ class _bottomNavBarState extends State<bottomNavBar>
         }
 
     await SharedPreferencesClass.restoreuser("listConversation").then((value) {
-      //log('listConversation :' + value);
-      if (value != "" && compteU == true) {
+      log('listConversation :' + value);
+      if (value != "" && value != "[]" && compteU == true) {
         Iterable list0 = jsonDecode(value);
         userconvers = list0.map((model) => ConversMod.fromJson(model)).toList();
         // log('user_value :' + value);
@@ -192,7 +170,10 @@ class _bottomNavBarState extends State<bottomNavBar>
       }
     });
   }
-
+  /*
+  http://tptv.cz/get.php?username=AD24719F233133D&password=BjeGsdPEXk&type=m3u_plus&output=mpegts
+http://tptv.cz/get.php?username=C07ADAD27D71&password=244A9C4C8D42&type=m3u_plus&output=mpegts
+*/
   Widget currentScreen = Home();
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -204,15 +185,85 @@ class _bottomNavBarState extends State<bottomNavBar>
 
   @override
   Widget build(BuildContext context) {
+
+    List<BottomNavigationBarItem> items = [
+    BottomNavigationBarItem(
+        icon: Icon(
+          IconData(0xe900, fontFamily: 'home'),
+          color: PaypalColors.Primary,
+        ),
+        title: Text("Home")),
+    BottomNavigationBarItem(
+        icon: globals.countnotif == 0 ? Icon(
+          IconData(0xe900, fontFamily: 'message'),
+          color: PaypalColors.Primary,
+        ) : Badge(
+           shape: BadgeShape.square,
+          borderRadius: BorderRadius.circular(5),
+          position: BadgePosition.topEnd(top: -12, end: -20),
+          padding: EdgeInsets.all(3),
+        
+          badgeContent: Text(
+            '2',
+            style: TextStyle(
+                color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+          ),
+          child: Icon(
+          IconData(0xe900, fontFamily: 'message'),
+          color: PaypalColors.Primary,
+        ),
+        ),
+        title: Text("Notifications")),
+    BottomNavigationBarItem(
+        icon: Icon(
+          IconData(0xe900, fontFamily: 'trip'),
+          color: PaypalColors.Primary,
+        ),
+        title: Text("Notifications")),
+    BottomNavigationBarItem(
+        icon: Icon(
+          IconData(0xe900, fontFamily: 'hearth'),
+          color: PaypalColors.Primary,
+        ),
+        title: Text("Notifications")),
+    BottomNavigationBarItem(
+        icon: Icon(
+          IconData(0xe900, fontFamily: 'profile'),
+          color: PaypalColors.Primary,
+        ),
+                  
+        title: Text("Profile"))
+  ];
+  /*
+  Votre nom d'utilisateur est : franky4ekem@gmail.com
+
+Votre mot de passe est : 53Q3tWYz
+  
+   */
     return Scaffold(
         backgroundColor: Colors.white,
         body: PageStorage(child: currentScreen, bucket: bucket),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentTab,
-          iconSize: 15.0,
+          iconSize: 17.0,
+          unselectedFontSize: 17,
+          selectedFontSize: 17,
+          showUnselectedLabels: false,
+          showSelectedLabels: false,
           elevation: 0.0,
           onTap: (i) {
+
+            if(i == 0){
+              globals.countnotif = 10;
+            }
+
+            if(i == 1){
+              globals.countnotif = 0;
+            }
+            
+
             setState(() {
+            
               currentTab = i;
               currentScreen = screens[i];
             });

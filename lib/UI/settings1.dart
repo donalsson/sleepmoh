@@ -7,6 +7,8 @@ import 'package:sleepmohapp/core/preference.dart';
  * Author: Damodar Lohani
  * profile: https://github.com/lohanidamodar
   */
+import 'dart:io';
+
 import 'package:sleepmohapp/core/util.dart';
 import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:flutter/material.dart';
@@ -37,15 +39,27 @@ class _SettingsOnePageState extends State<SettingsOnePage> {
   void initState() {
     super.initState();
     _dark = false;
+    setState(() {
+    compteU = false;
+  
+        if (globals.userinfos != null) {
+          compteU = true;
+        }else{
+           compteU = false;
+  
+        }
+});
     initSaveData();
   }
 void initSaveData () async {
     final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
-compteU = false;
+setState(() {
+  compteU = false;
 
   if (globals.userinfos != null) {
           compteU = true;
         }
+});
 
 }
   Brightness _getBrightness() {
@@ -431,13 +445,23 @@ bool _isChecked = true;
                             textColor: Colors.white,
                             color: PaypalColors.LightBlue,
                             onPressed: (){
-                                  SharedPreferencesClass.save("userinfos", "");
+
+                              
+                                //setState(() {
+                                    
                                   globals.userinfos = null;
+                                  //}); 
+
+
+                                  SharedPreferencesClass.save("userinfos", "");
+                                  
+                                  
                                   Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(builder: (context) => new bottomNavBar()),
                                   (Route<dynamic> route) => false,
-                                );               
+                                );  
+            
                             },
                             child: Text('Déconnexion'),
                           ),

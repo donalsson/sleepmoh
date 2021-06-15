@@ -12,6 +12,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:international_phone_input/international_phone_input.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:sleepmohapp/core/httpreq.dart';
@@ -957,7 +958,7 @@ _password0 = value;
       bool hasSpecialCharacters = password.contains(new RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
       bool hasMinLength = password.length > minLength;
 
-      return hasDigits & hasUppercase & hasLowercase & hasSpecialCharacters & hasMinLength;
+      return hasMinLength;
     }
 
   String validateEmail(String value) {
@@ -985,17 +986,7 @@ _password0 = value;
 //    If all data are correct then save data to out variables
     _formkey0.currentState.save();
     startPayment();
-       log('confirmedNumber');
-            log(confirmedNumber);
-            log('_name');
-            log(_name);
-             log('_password');
-            log(_password0);
-            log('phoneIsoCode');
-            log(phoneIsoCode);
-             log('tof');
-            log(_toff);
-            if(_toff == 'oui'){
+                  if(_toff == 'oui'){
 String fileName = tmpFile.path.split('/').last;
   HttpPostRequest.uploade_image_up(phoneNumber,confirmedNumber,phoneIsoCode,_name, _password0, fileName, base64Image, widget.userinfo.idu).then((String result){
               if(result == "error"){
@@ -1005,7 +996,11 @@ String fileName = tmpFile.path.split('/').last;
                                   compteExit();
                                 }else{
                                  // log('result'+ result);
-                                  
+                                  var userinfos = new List<UserMod>();
+           
+                                Iterable list0 = jsonDecode(result);
+                                userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
+                                    globals.userinfos = userinfos[0];
                                 //pour le compte existant  widget.compteE();
                                  sucessTansaction();
 

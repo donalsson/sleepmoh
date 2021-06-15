@@ -234,7 +234,7 @@ compteU = false;
                                       _formKey.currentState.save();
 
 print("userinfos[0].avatar : "+userinfos[0].telephone);
-                                       HttpPostRequest.create_con_request(userinfos[0].telephone, _message, userinfos[0].nom, userinfos[0].avatar, "", "tchat_admin", "").then((String result){
+                                       HttpPostRequest.create_con_request(userinfos[0].login, _message, userinfos[0].nom, userinfos[0].avatar, "", "tchat_admin", "").then((String result){
                                                         if(result == "error"){
                                                                     //  errorTransaction();
                                                                     }else{
@@ -250,6 +250,7 @@ print("userinfos[0].avatar : "+userinfos[0].telephone);
                                                                           Navigator.of(context).push(PageRouteBuilder(
                                                                           pageBuilder: (_, __, ___) => new chatting(
                                                                                 name: userinfos[0].nom,
+                                                                                nom: userinfos[0].nom,
                                                                                 messages: result,
                                                                               )));
                                                                           }
