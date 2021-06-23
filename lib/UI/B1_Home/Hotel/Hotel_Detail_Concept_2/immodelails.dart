@@ -8,7 +8,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sleepmohapp/DataSample/ImagesModel.dart';
 import 'package:sleepmohapp/DataSample/mydata.dart';
 import 'package:sleepmohapp/Library/SupportingLibrary/Ratting/Rating.dart';
+import 'package:sleepmohapp/core/global.dart' as globals;
 import 'package:like_button/like_button.dart';
+
+
+import 'package:sleepmohapp/UI/booking/reservation.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sleepmohapp/UI/B1_Home/Hotel/Hotel_Detail_Concept_1/gallery.dart';
 import 'package:sleepmohapp/UI/B1_Home/Hotel/Hotel_Detail_Concept_2/reviewsDetail2.dart';
@@ -42,6 +46,7 @@ var listImage = listImages;
   void initState() {
     listImage = listImages.where((i) => i.cat_id == widget.id).toList();
      initSaveData();
+    
     _markers.add(
       Marker(
         markerId: MarkerId("40.7078523, -74.008981"),
@@ -64,8 +69,11 @@ setState(() {
       listImages = list0.map((model) => Imagem.fromJson(model)).toList();
       print(listImages);
       listImage = listImages.where((i) => i.cat_id == widget.id).toList();
-      print(widget.id);
-      print(listImage);
+     // print(widget.id);
+       setState(() {
+       globals.listimages = listImage;
+     });
+     // print(listImage);
      }
 });
   
@@ -353,7 +361,24 @@ setState(() {
           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
           child: InkWell(
             onTap: () {
-              Navigator.of(context).pop();
+               Navigator.of(context).push(PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => new Reservation(
+                          type: "Immobilier",
+                          title: widget.title,
+                          id: widget.id,
+                          location: widget.location,
+                          price: widget.price.toString(),
+                          ratting: widget.ratting,
+                          periode: widget.periode
+                        ),
+                        transitionDuration: Duration(milliseconds: 600),
+                        transitionsBuilder:
+                            (_, Animation<double> animation, __, Widget child) {
+                          return Opacity(
+                            opacity: animation.value,
+                            child: child,
+                          );
+                        }));
             },
             child: Container(
               height: 55.0,
@@ -596,7 +621,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Container(
-                                    width: 210.0,
+                                    width: 200.0,
                                     child: Text(
                                       title,
                                       style: _txtStyleTitle.copyWith(

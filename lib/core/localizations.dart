@@ -23,13 +23,28 @@ class AppLocalizations {
     });
   }
  //iiin
+//flutter pub pub run intl_translation:generate_from_arb lib/core/localizations.dart lib/i10n/intl_fr.arb lib/i10n/intl_en.arb  --output-dir=lib/i10n
 
   String get nameer {
-    return Intl.message('Name must be more than 2 charater', name: 'nameer');
+    return Intl.message('Le nom doit comporter plus de 2 caractères', name: 'nameer');
   }
-
+  String get confr {
+    return Intl.message('Confimer', name: 'confr');
+  }
+String get resvatio {
+    return Intl.message('Veuillez remplir le formulaire pour confirmer votre réservation', name: 'resvatio');
+  }
+  String get resv {
+    return Intl.message('Réservation', name: 'resv');
+  }
+  String get datedeparr {
+    return Intl.message('Arrival date - Departure date', name: 'datedeparr');
+  }
   String get haveacc {
     return Intl.message('Avez vous un compte ? Connectez-vous', name: 'haveacc');
+  }
+  String get validd {
+    return Intl.message('Valider', name: 'validd');
   }
 
 
@@ -439,7 +454,7 @@ String get profu {
   }
 
   String get lblname {
-    return Intl.message('Name', name: 'lblname');
+    return Intl.message('Nom', name: 'lblname');
   }
 
   String get lblphone {
@@ -484,7 +499,7 @@ class FallbackCupertinoLocalisationsDelegate extends LocalizationsDelegate<Cuper
   const FallbackCupertinoLocalisationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'ar','fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => ['en', 'fr'].contains(locale.languageCode);
 
   @override
   Future<CupertinoLocalizations> load(Locale locale) => SynchronousFuture<_DefaultCupertinoLocalizations>(_DefaultCupertinoLocalizations(locale));

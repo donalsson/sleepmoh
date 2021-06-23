@@ -1,11 +1,16 @@
 library my_project.global;
 import '../DataSample/UserMod.dart';
+import '../DataSample/ConversMod.dart';
+import '../DataSample/ImagesModel.dart';
 
 
 
 
 UserMod userinfos;
 int countnotif = 0;
+List<ConversMod> converts;
+List<Imagem> listimages;
+
 /*
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';

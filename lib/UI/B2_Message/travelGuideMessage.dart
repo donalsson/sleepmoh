@@ -45,29 +45,15 @@ void initSaveData () async {
     final SharedPreferences sharedPrefs = await SharedPreferences.getInstance();
 compteU = false;
 
- await SharedPreferencesClass.restoreuser("userinfos").then((value) {
+ 
+
    setState(() {
-     if(value != ""){
+    print("eeee"+userconvers.toString());
 compteU = true;
-      Iterable list0 = jsonDecode(value);
-        userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
-     log('user_value :' + value);
-     }
+        userconvers = globals.converts;
+
      
    });
-     });
-
-   await SharedPreferencesClass.restoreuser("listConversation").then((value) {
-   setState(() {
-     if(value != ""){
-compteU = true;
-        Iterable list0 = jsonDecode(value);
-        userconvers = list0.map((model) => ConversMod.fromJson(model)).toList();
-
-     }
-     
-   });
-     });
      
    setState(() {
    //  log("message");
@@ -370,7 +356,7 @@ class messageList extends StatelessWidget {
     return InkWell(
       onTap: () {
         log(convers.iddis);
-        userinfos[0].login == convers.iddis
+        globals.userinfos.login == convers.iddis
                   ?
         Navigator.of(context).push(PageRouteBuilder(
             pageBuilder: (_, __, ___) => new chatting(                 
@@ -430,7 +416,7 @@ class messageList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     
                     children: <Widget>[
-                      userinfos[0].login == convers.iddis
+                      globals.userinfos.login == convers.iddis
                   ?
                       Text(convers.nomdis,
                           style: TextStyle(

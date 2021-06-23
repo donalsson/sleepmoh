@@ -2218,6 +2218,7 @@ class _mapsrecherState extends State<mapsrecher> {
                         profilh: listHotels[index].imghotel,
                         ln: listHotels[index].ln,
                         lat: listHotels[index].lat,
+                        etoile: listHotels[index].nombreetoile,
                       ),
                   transitionDuration: Duration(milliseconds: 600),
                   transitionsBuilder:

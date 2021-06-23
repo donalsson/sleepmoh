@@ -188,7 +188,7 @@ class HttpPostRequest {
         body: <String, String>{"action": 'getdiscutions', "nbr": number});
     //  log("httpreq");
     if (response.statusCode == 200) {
-     log(response.body);
+    // log(response.body);
 
       getAllMessages(number);
       // log('savelistTot-Hotel');
@@ -206,7 +206,7 @@ class HttpPostRequest {
         body: <String, String>{"action": 'getmessagetel', "id": number});
     // log("httpreq dedans");
     if (response.statusCode == 200) {
-      print(response.body);
+     // print(response.body);
       Iterable list = json.decode(response.body);
       SharedPreferencesClass.save("listMessages", response.body);
       return list.map((model) => MessageTchaMod.fromJson(model)).toList();
@@ -474,6 +474,12 @@ Map data;
     print(tel);
     var text = "Votre code d'activation est :";
     var text1 = "&content=";
+/*
+http://smsgw.gtsnetwork.cloud:PORT/message?user=USER&pass=PASSWORD&fro
+m=SENDERID&to=RECIPIENT&tag=GSM&text=MsgBoby&id=ID&dlrreq=DLR
+http://smsgw.gtsnetwork.cloud:4000/message?user=SleepMoh&pass=EY16h@WZSb4TS&from=gtsnetwork&to=237691779906&tag=GSM&text=bonjour&id=2657867&dlrreq=0
+ */
+
 
     http.Response response = await http.get(
         "https://api.clockworksms.com/http/send.aspx?key=5720bcd2669985c692e13c49a0ecf636ef11f1d5&to=" +
@@ -481,6 +487,7 @@ Map data;
             text1 +
             text +
             code.toString());
+           
     if (response.statusCode == 200) {
       print(response.body);
 

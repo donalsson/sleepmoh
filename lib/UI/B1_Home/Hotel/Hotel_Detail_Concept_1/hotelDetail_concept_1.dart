@@ -9,6 +9,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sleepmohapp/DataSample/HotelModel.dart';
 import 'package:sleepmohapp/DataSample/mydata.dart';
+
+
+import 'package:sleepmohapp/core/localizations.dart';
+import 'package:sleepmohapp/UI/booking/reservation.dart';
 import 'package:sleepmohapp/DataSample/ImagesModel.dart';
 import 'package:sleepmohapp/UI/B1_Home/B1_Home_Screen/B1_Home_Screen.dart';
 import 'package:sleepmohapp/UI/B1_Home/Hotel/Hotel_Detail_Concept_1/reviewDetail1.dart';
@@ -17,8 +21,8 @@ import 'gallery.dart';
 
 class hotelDetail extends StatefulWidget {
   String nom, profilh , destination, image, title, price, location, id;
-  double ln, lat;
-  hotelDetail({this.image, this.title, this.price, this.location, this.id, this.nom, this.destination, this.profilh, this.ln, this.lat });
+  double ln, lat, etoile;
+  hotelDetail({this.image, this.title, this.price, this.location, this.id, this.nom, this.destination, this.profilh, this.ln, this.lat, this.etoile });
 
   @override
   _hotelDetailState createState() => _hotelDetailState();
@@ -410,7 +414,24 @@ setState(() {
           padding: const EdgeInsets.only(left: 15.0, right: 15.0),
           child: InkWell(
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).push(PageRouteBuilder(
+                        pageBuilder: (_, __, ___) => new Reservation(
+                          type: "Hotel",
+                          title: widget.title,
+                          id: widget.id,
+                          location: widget.location,
+                          price: widget.price.toString(),
+                          ratting: widget.etoile,
+                          periode: AppLocalizations.of(context).photels
+                        ),
+                        transitionDuration: Duration(milliseconds: 600),
+                        transitionsBuilder:
+                            (_, Animation<double> animation, __, Widget child) {
+                          return Opacity(
+                            opacity: animation.value,
+                            child: child,
+                          );
+                        }));
             },
             child: Container(
               height: 55.0,

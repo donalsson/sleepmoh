@@ -60,6 +60,7 @@ void main() async {
       HttpPostRequest.getAllConvers(userinfos[0].login)
           .then((List<ConversMod> result) {
         if (result.length > 0) {
+          globals.converts = result;
           log('savelist-Converssations');
           // SharedPreferencesClass.save('listHotel1', result);
         }

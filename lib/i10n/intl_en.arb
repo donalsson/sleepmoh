@@ -5,19 +5,24 @@
   "descrip0":"Chose your language",
   "pass":"Skip",
   "small":"Hotels and accommodation near you",
+  "validd":"Validate",
+  "confr":"Confirm",
 
   "send": "Flourish at will",
+  "nameer": "Name must be more than 2 charater",
   "easy": " With the different tourist sites that SleepMoh offers you",
   "gere": "Your real estate agents",
   "mobile": "Buy and rent homes easily with SleepMoh",
   "start": "Start",
+  "resvatio": "Please fill out the form to confirm your reservation",
 
   "listapp": "List of apartments",
   "liststu": "Studio List",
   "listcham": "List of rooms",
   "tourisdest": "Tourism is an important way for different countries and cultures to communicate together, an effective way to develop a country's economy, as well as a key sector for improving people's lives.",
   "categ": "Categories",
-
+  "resv": "Reservation",
+  "datedeparr": "Arrival date - Departure date",
 
   "well": "Find what you want",
   "sign": "Signup",
@@ -135,7 +140,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lblname": "Name",
+  "lblname": "Enter your Name",
   "@lblname": {
     "type": "text",
     "placeholders": {}

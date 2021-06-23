@@ -6,6 +6,10 @@
   "titre0":"Bienvenu sur SleepMoh",
   "descrip0":"Choisissez une langue",
   "pass":"Passer",
+  "validd":"Valider",
+  "confr":"Confirmer",
+  "jetesttt":"Passer",
+  "nameer":"Le nom doit comporter plus de 2 caractères",
   "small":"Hôtels et hébergements à proximité de vous",
 "send":"S'épanouir à volonté",
 "easy":"Avec les differents sites touristiques que vous offres SleepMoh",
@@ -15,10 +19,13 @@
 
 
 "listapp": "Liste des appartements",
+"resvatio": "Veuillez remplir le formulaire pour confirmer votre réservation",
 "liststu": "Liste des Studio",
 "listcham": "Liste des chambres",
 "tourisdest": "Le tourisme est un moyen important pour que différents pays et différentes cultures puissent communiquer ensemble, une façon efficace de développer l’économie d’un pays, ainsi qu’un secteur clé pour améliorer la vie de la population",
 "categ": "Categories",
+"resv": "Réservation",
+"datedeparr": "Date d'arrivée - Date de départ",
 
 
 "well":"Rechercher ce que vous voulez",
@@ -138,7 +145,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lblname": "Name",
+  "lblname": "Enter votre Nom",
   "@lblname": {
     "type": "text",
     "placeholders": {}

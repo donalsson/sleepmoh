@@ -301,7 +301,8 @@ class itemGrid extends StatelessWidget {
                           destination: hotelData.description,
                           profilh: hotelData.imghotel,
                           ln: hotelData.ln,
-                          lat: hotelData.lat,
+                          lat: hotelData.lat,                                           
+                        etoile: hotelData.nombreetoile,
                         ),
                     transitionDuration: Duration(milliseconds: 600),
                     transitionsBuilder:

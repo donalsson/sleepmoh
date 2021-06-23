@@ -27,7 +27,6 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:sleepmohapp/DataSample/message_cloud.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:sleepmohapp/DataSample/UserMod.dart';
 import 'package:sleepmohapp/UI/IntroApps/listuserpro.dart';
 
@@ -65,6 +64,7 @@ class _bottomNavBarState extends State<bottomNavBar>
 
   int currentTab = 0;
   int i = 0;
+  int position = 0;
   List<Widget> screens = [];
   Animation<double> _animation;
   AnimationController _animationController;
@@ -87,29 +87,38 @@ class _bottomNavBarState extends State<bottomNavBar>
 
     _firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
-        playLocalAsset();
+       // playLocalAsset();
         print("onMessage: $message");
-        await SharedPreferencesClass.restoreuser("userinfos").then((value) {
-          setState(() {
-            if (value != "") {
-              compteU = true;
-            }
-          });
-        });
-
-        final notification = message['notification'];
-        setState(() {
-          FlutterRingtonePlayer.playNotification();
+        print("popo"+position.toString());
+     
+     
+       if(position != 1){
+         setState(() {
+            globals.countnotif = globals.countnotif + 1;
+         });
+               await SharedPreferencesClass.save("notifnot", globals.countnotif);
+          }
+     
           i = i + 1;
           HttpPostRequest.getAllConvers(globals.userinfos.login)
               .then((List<ConversMod> result) {
-            //  print(result);
+          setState(() {   
+            print('rere');       
+            globals.converts = result;
+            });
           });
+          
+       
+
+       
+
         //  items = badger.setBadge(items, i.toString(), 1);
 
+     /*
+        final notification = message['notification'];
           messages.add(Message(
-              title: notification['title'], body: notification['body']));
-        });
+              title: notification['title'], body: notification['body']));*/
+        
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
@@ -132,6 +141,7 @@ class _bottomNavBarState extends State<bottomNavBar>
   }
 
  Future<AudioPlayer> playLocalAsset() async {
+         
     audioCache.play('notif.mp3');
   }
 
@@ -146,6 +156,9 @@ class _bottomNavBarState extends State<bottomNavBar>
       if (value != "" && value != "[]" && compteU == true) {
         Iterable list0 = jsonDecode(value);
         userconvers = list0.map((model) => ConversMod.fromJson(model)).toList();
+        setState(() {          
+        globals.converts = userconvers;
+        });
         // log('user_value :' + value);
 
         setState(() {
@@ -204,7 +217,7 @@ http://tptv.cz/get.php?username=C07ADAD27D71&password=244A9C4C8D42&type=m3u_plus
           padding: EdgeInsets.all(3),
         
           badgeContent: Text(
-            '2',
+            globals.countnotif.toString(),
             style: TextStyle(
                 color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
           ),
@@ -253,9 +266,9 @@ Votre mot de passe est : 53Q3tWYz
           elevation: 0.0,
           onTap: (i) {
 
-            if(i == 0){
-              globals.countnotif = 10;
-            }
+            setState(() {
+              position = i;
+            });
 
             if(i == 1){
               globals.countnotif = 0;

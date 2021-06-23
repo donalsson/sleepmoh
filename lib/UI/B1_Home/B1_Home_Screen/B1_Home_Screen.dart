@@ -521,6 +521,7 @@ class cardLastActivity extends StatelessWidget {
                     profilh: searchesModel.imghotel,
                     ln: searchesModel.ln,
                     lat: searchesModel.lat,
+                    etoile: searchesModel.nombreetoile,
                   ),
               transitionDuration: Duration(milliseconds: 600),
               transitionsBuilder:

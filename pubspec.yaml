@@ -37,7 +37,7 @@ dependencies:
   flutter_ringtone_player: ^2.0.0
   image_picker:
   im_stepper: ^0.1.2+8
-  audioplayers: ^0.17.4
+  audioplayers: 0.13.4
   flutter_google_places: ^0.2.6
   multi_image_picker: ^4.7.14
   connectivity: ^0.4.9
@@ -58,6 +58,7 @@ dependencies:
   flutter_credit_card:
   google_maps_flutter: ^0.5.27+1
   localstorage: ^3.0.1+4
+  syncfusion_flutter_datepicker: ^18.4.49-beta
 
 dev_dependencies:
   flutter_test:
@@ -151,6 +152,7 @@ flutter:
     - assets/map_style/map_style.txt
     - assets/image/
     - assets/notif/
+    - assets/
     - assets/image/onBoardingImage/
     - assets/image/icon/
     - assets/image/images/
