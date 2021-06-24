@@ -302,7 +302,7 @@ class cardList extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(PageRouteBuilder(
               pageBuilder: (_, __, ___) => new terrainsdetails(
-                    title: AppLocalizations.of(context).terrof +
+                    title: AppLocalizations.of(context).terrof + " " +
                         listimmo.superficiet +
                         AppLocalizations.of(context).mcarr,
                     id: listimmo.id,
@@ -369,9 +369,9 @@ class cardList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Container(
-                            width: 220.0,
+                            width: 180.0,
                             child: Text(
-                              AppLocalizations.of(context).terrof +
+                              AppLocalizations.of(context).terrof + " " +
                                   listimmo.superficiet +
                                   AppLocalizations.of(context).mcarr,
                               style: _txtStyleTitle,
@@ -406,7 +406,7 @@ class cardList extends StatelessWidget {
                         Text(
                           listimmo.prixt + " Fcfa",
                           style: TextStyle(
-                              fontSize: 25.0,
+                              fontSize: 20.0,
                               color: Colors.blueAccent,
                               fontWeight: FontWeight.w500,
                               fontFamily: "Gotik"),
@@ -497,63 +497,75 @@ Widget _cardLocalion(BuildContext context, ImmobMod data) {
         SizedBox(
           height: 2.0,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Icon(
-              Icons.location_on,
-              size: 18.0,
-              color: Colors.black12,
-            ),
-            Text(
-              data.localisation,
-              style: TextStyle(
-                  fontFamily: "Sofia",
-                  fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
-                  color: Colors.black26),
-            ),
-          ],
+        Container(
+          width: 160.0,
+          child: Column(
+            children: [
+              Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Icon(
+                            Icons.location_on,
+                            size: 18.0,
+                            color: Colors.black12,
+                          ),
+                          Expanded(
+                            child: Text(
+                            data.localisation,
+                            style: TextStyle(
+                                fontFamily: "Sofia",
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.0,
+                                color: Colors.black26),
+                                softWrap: false,
+                                overflow: TextOverflow.fade,
+                          ),),
+                          
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.star,
+                            size: 18.0,
+                            color: Colors.yellow,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 3.0),
+                            child: Text(
+                              data.prix + ' Fcfa',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontFamily: "Sofia",
+                                  fontSize: 12.0),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3.0,
+                          ),
+                          Container(
+                            height: 23.0,
+                            width: 62.0,
+                            decoration: BoxDecoration(
+                                color: Colors.blueAccent,
+                                borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                            child: Center(
+                              child: Text(AppLocalizations.of(context).reduc,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 10.0)),
+                            ),
+                          )
+                        ],
+                      ),
+            ],
+          )
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Icon(
-              Icons.star,
-              size: 18.0,
-              color: Colors.yellow,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 3.0),
-              child: Text(
-                data.prix + ' Fcfa',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontFamily: "Sofia",
-                    fontSize: 13.0),
-              ),
-            ),
-            SizedBox(
-              width: 3.0,
-            ),
-            Container(
-              height: 23.0,
-              width: 62.0,
-              decoration: BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
-              child: Center(
-                child: Text(AppLocalizations.of(context).reduc,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 10.0)),
-              ),
-            )
-          ],
-        ),
+        
       ],
     ),
   );
@@ -630,7 +642,12 @@ Widget _cardMaison(BuildContext context, MaisonMod data) {
         SizedBox(
           height: 2.0,
         ),
-        Row(
+
+        Container(
+          width: 160.0,
+          child: Column(
+            children: [
+ Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -639,14 +656,19 @@ Widget _cardMaison(BuildContext context, MaisonMod data) {
               size: 18.0,
               color: Colors.black12,
             ),
-            Text(
+            Expanded(
+              child: Text(
               data.localisation,
               style: TextStyle(
                   fontFamily: "Sofia",
                   fontWeight: FontWeight.w500,
-                  fontSize: 15.0,
+                  fontSize: 12.0,
                   color: Colors.black26),
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
             ),
+            ),
+            
           ],
         ),
         Row(
@@ -655,7 +677,7 @@ Widget _cardMaison(BuildContext context, MaisonMod data) {
           children: <Widget>[
             Icon(
               Icons.star,
-              size: 18.0,
+              size: 10.0,
               color: Colors.yellow,
             ),
             Padding(
@@ -665,15 +687,14 @@ Widget _cardMaison(BuildContext context, MaisonMod data) {
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontFamily: "Sofia",
-                    fontSize: 13.0),
+                    fontSize: 11.0),
               ),
             ),
             SizedBox(
-              width: 35.0,
+              width: 5.0,
             ),
             Container(
               height: 23.0,
-              width: 62.0,
               decoration: BoxDecoration(
                   color: Colors.blueAccent,
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
@@ -682,11 +703,13 @@ Widget _cardMaison(BuildContext context, MaisonMod data) {
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
-                        fontSize: 10.0)),
+                        fontSize: 8.0)),
               ),
             )
           ],
         ),
+            ])),
+       
       ],
     ),
   );

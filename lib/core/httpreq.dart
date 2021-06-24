@@ -367,7 +367,7 @@ Map data;
     http.Response response = await http
         .post('https://sleepmoh.com/http_flutter.php', body: <String, String>{
       "action": "register_phone",
-      "tel": tel,
+      "tel": tel.substring(1, tel.length),
       "log": log,
       "pass0": password0,
       "name": name,
@@ -390,6 +390,55 @@ Map data;
           */
           
           });
+          return response.body;
+          
+        } else {
+          return response.body;
+        }
+        
+    } else {
+      return "error";
+      //  throw Exception('Failed to load album');
+
+    }
+  }
+
+
+static Future<String> reservation_request(
+      data, dats, nom, tel, typee, idpro, pritx, idd) async {
+    // String urli = 'https://small-pocket.herokuapp.com/api/v1/auth/sign_in';
+    // var url = '${urli}ocr';
+    // var bytes = image.readAsBytesSync();
+    print(tel);
+    http.Response response = await http
+        .post('https://sleepmoh.com/manager/http.php', body: <String, String>{
+      "action": "reserva",
+      "data": data,
+      "dats": dats,
+      "nom": nom,
+      "tel": tel,
+      "typeee": typee,
+      "id_pro": idpro,
+      "pritx": pritx,
+      "idd": idd
+    });
+    if (response.statusCode == 200) {
+      
+        // log('savelistTot-Hotel');
+        print(response.body);
+       if (response.body != "" && response.body != "exit") {
+        /* HttpPostRequest.getAllConvers(log).then((List<ConversMod> result) {
+          /*
+          SharedPreferencesClass.save("userinfos", response.body);
+           var userinfos = new List<UserMod>();
+           
+      Iterable list0 = jsonDecode(response.body);
+       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
+          globals.userinfos = userinfos[0];
+
+          */
+          
+          });*/
           return response.body;
           
         } else {

@@ -234,7 +234,7 @@ setState(() {
                   markers: _markers,
                 ),
               ),
-              Padding(
+             /* Padding(
                 padding: const EdgeInsets.only(top: 135.0, right: 60.0),
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -258,7 +258,7 @@ setState(() {
                     ),
                   ),
                 ),
-              )
+              )*/
             ],
           ),
         ),

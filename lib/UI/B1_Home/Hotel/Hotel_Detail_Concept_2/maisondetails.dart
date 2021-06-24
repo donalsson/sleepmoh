@@ -139,7 +139,7 @@ setState(() {
                 width: 20.0,
               ),
               new LinearPercentIndicator(
-                width: _width - 225,
+                width: _width - 250,
                 lineHeight: 9.0,
                 percent: int.parse(widget.note) >= 3  ? 1.0 : int.parse(widget.note) > 1 && int.parse(widget.note) < 3  ? 0.5 : 0.2,
                 progressColor: int.parse(widget.note) >= 3 ? Colors.green : int.parse(widget.note) > 1 && int.parse(widget.note) < 3 ? Colors.orange : Colors.red,
@@ -165,7 +165,7 @@ setState(() {
                 width: 20.0,
               ),
               new LinearPercentIndicator(
-                width: _width - 255,
+                width: _width - 290,
                 lineHeight: 9.0,
                 percent: int.parse(widget.acces) >= 5  ? 1.0 : int.parse(widget.acces) > 2 && int.parse(widget.acces) < 5  ? 0.5 : 0.2,
                 progressColor: int.parse(widget.acces) >= 5 ? Colors.green : int.parse(widget.acces) > 2 && int.parse(widget.acces) < 5 ? Colors.orange : Colors.red,
@@ -191,7 +191,7 @@ setState(() {
                 width: 20.0,
               ),
               new LinearPercentIndicator(
-                width: _width - 236,
+                width: _width - 260,
                 lineHeight: 9.0,
                 percent: int.parse(widget.stanting) >= 3  ? 1.0 : int.parse(widget.stanting) > 1 && int.parse(widget.stanting) < 3  ? 0.5 : 0.2,
                 progressColor: int.parse(widget.stanting) >= 3 ? Colors.green : int.parse(widget.stanting) > 1 && int.parse(widget.stanting) < 3 ? Colors.orange : Colors.red,
@@ -217,7 +217,7 @@ setState(() {
                 width: 20.0,
               ),
               new LinearPercentIndicator(
-                width: _width - 240
+                width: _width - 270
                 ,
                 lineHeight: 9.0,
                 percent: int.parse(widget.acces) >= 3  ? 1.0 : int.parse(widget.acces) > 1 && int.parse(widget.acces) < 3  ? 0.5 : 0.2,
@@ -262,7 +262,7 @@ setState(() {
                   markers: _markers,
                 ),
               ),
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.only(top: 135.0, right: 60.0),
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -286,7 +286,7 @@ setState(() {
                     ),
                   ),
                 ),
-              )
+              )*/
             ],
           ),
         ),
@@ -604,7 +604,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
               padding: const EdgeInsets.only(
                   top: 20.0, right: 20.0, left: 20.0, bottom: 40.0),
               child: Container(
-                height: 170.0,
+                height: 140.0,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -626,7 +626,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Container(
-                                    width: 150.0,
+                                    width: 140.0,
                                     child: Text(
                                       title,
                                       style: _txtStyleTitle.copyWith(
@@ -643,7 +643,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                                       Text(
                                         oCcy.format(int.parse(price)).toString() + " Fcfa",
                                         style: TextStyle(
-                                            fontSize: 20.0,
+                                            fontSize: 15.0,
                                             color: Colors.blue[300],
                                             fontWeight: FontWeight.w600,
                                             fontFamily: "Gotik"),

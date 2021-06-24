@@ -96,12 +96,12 @@ class _hotelListState extends State<hotelList> {
         children: <Widget>[
           chosseCard
               ? Padding(
-                  padding: const EdgeInsets.only(top: 95.0),
+                  padding: const EdgeInsets.only(top: 130.0),
                   child: Container(
                       color: Colors.white,
                       child: loadImage ? loadImageAnimation : cardGrid()))
               : Padding(
-                  padding: const EdgeInsets.only(top: 95.0),
+                  padding: const EdgeInsets.only(top: 120.0),
                   child: Container(
                       color: Colors.white,
                       child: loadImage ? loadImageAnimation : imageLoaded),
@@ -110,7 +110,7 @@ class _hotelListState extends State<hotelList> {
             padding: const EdgeInsets.only(top: 8.0),
             child: Container(
               color: Colors.white,
-              height: 130.0,
+              height: 150.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -587,7 +587,7 @@ class cardList extends StatelessWidget {
                         Text(
                           hotelData.prix + "\ Fcfa",
                           style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 14.0,
                               color: Colors.blue[300],
                               fontWeight: FontWeight.w500,
                               fontFamily: "Gotik"),

@@ -475,7 +475,22 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                                   "https://sleepmoh.com/flutterimg/hotel2.jpg"),
                             ],
                           ),
-                        )
+                        ),
+                        Positioned(
+                              left: 0,
+                              top: 0,                           
+                              child: RawMaterialButton(
+                              onPressed: () {Navigator.pop(context);},
+                              elevation: 0.0,
+                              fillColor: Colors.white.withOpacity(0.85),
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.black
+                              ),
+                              padding: EdgeInsets.all(5.0),
+                              shape: CircleBorder(),
+                            ),
+                            ),
                       ],
                     ),
                   ),

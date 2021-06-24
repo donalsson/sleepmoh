@@ -173,7 +173,7 @@ setState(() {
                 markers: _markers,
               ),
             ),
-            Padding(
+           /* Padding(
               padding: const EdgeInsets.only(top: 135.0, right: 60.0),
               child: Align(
                 alignment: Alignment.bottomRight,
@@ -196,7 +196,7 @@ setState(() {
                   ),
                 ),
               ),
-            )
+            )*/
           ],
         ),
       ],
@@ -380,13 +380,18 @@ setState(() {
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  "Autres chambres de " + widget.nom,
-                  style: TextStyle(
-                      fontFamily: "Sofia",
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.w700),
+                 Expanded(
+                  child: Text(
+                                "Autres chambres de " + widget.nom,
+                                style: TextStyle(
+                                    fontFamily: "Sofia",
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w700),
+                                    softWrap: false,
+                                    overflow: TextOverflow.fade,
+                              ),
                 )
+                
               ]),
         ),
         SizedBox(
@@ -785,7 +790,11 @@ Widget _relatedPost(BuildContext context, String image, title, location, ratting
         SizedBox(
           height: 2.0,
         ),
-        Row(
+        Container(
+          width: 180.0,
+          child: Column(
+            children: [
+          Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -794,14 +803,17 @@ Widget _relatedPost(BuildContext context, String image, title, location, ratting
               size: 18.0,
               color: Colors.black12,
             ),
-            Text(
+            Expanded(child: Text(
               location,
               style: TextStyle(
                   fontFamily: "Sofia",
                   fontWeight: FontWeight.w500,
                   fontSize: 15.0,
                   color: Colors.black26),
-            ),
+                  softWrap: false,
+                  overflow: TextOverflow.fade,
+            ),),
+            
           ],
         ),
         Row(
@@ -831,6 +843,10 @@ Widget _relatedPost(BuildContext context, String image, title, location, ratting
             ),
           ],
         ),
+            ],
+          ),
+        ),
+       
       ],
     ),
     ),
@@ -949,7 +965,7 @@ Widget _galeriepost(String image, BuildContext context, List<Imagem> listImage) 
                       width: 10.0,
                       color: Colors.black54,
                       child: Center(
-                        child: Text("See More",
+                        child: Text("",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Sofia",

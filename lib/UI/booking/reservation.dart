@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui';
 import 'dart:math';
@@ -25,11 +25,12 @@ import 'package:sleepmohapp/core/util.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class Reservation extends StatefulWidget {
  // const Reservation({ Key? key }) : super(key: key);
 String type, title,note, price, location, id, description, periode, acces, stanting, securi;
-  double ratting, ln, lat;
+  double  ratting, ln, lat;
   Reservation(
     {
       this.type,
@@ -52,13 +53,16 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
   var userinfos = new List<UserMod>();
   AnimationController sanimationController;
   String phoneNumber = '';
-  String _password = '';
-  String _password0 = '';
+  String _date = '';
+  String _dated = '';
+  String _datef = '';
+  String _prixt = '';
   int code;
   String _name;
   String _daterange = "";
   Timer _timer;
   int _start = 10;
+  double _nbjour = 0;
   var ratting = 2.5;
   var texttt = TextEditingController();
   var datrrr = TextEditingController();
@@ -720,7 +724,7 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
                                       Text(
-                                        widget.price,
+                                        widget.price.toString(),
                                         style: TextStyle(
                                             fontSize: 25.0,
                                             color: Colors.blue[300],
@@ -995,7 +999,7 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
                                              
                                               validator: validatePass,
                                               onSaved: (String val) {
-                                                _password = val;
+                                                _daterange = val;
                                               },
                                             ),
                                           )
@@ -1013,6 +1017,7 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
                   ),
                   InkWell(
                     onTap: () {
+
                       _validateInputs();
                     },
                     child: Container(
@@ -1058,7 +1063,7 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
 
   String validatePass(String value) {
 // Indian Mobile number are of 10 digit only
-    _password = value;
+    _daterange = value;
 
     if (value == null || value.isEmpty) {
       return AppLocalizations.of(context).pas_error;
@@ -1072,12 +1077,12 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
 
   String validateCPass(String value) {
 // Indian Mobile number are of 10 digit only
-    _password0 = value;
+    _daterange = value;
 
     if (value == null || value.isEmpty) {
       return AppLocalizations.of(context).pas_error;
     } else {
-      if (value != _password)
+      if (value != _daterange)
         return AppLocalizations.of(context).passss_error;
       else
         return null;
@@ -1112,7 +1117,7 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
       return AppLocalizations.of(context).pas_error;
     } else {
       //  log(_mobile);
-      if (!(value == _password0))
+      if (!(value == _daterange))
         return AppLocalizations.of(context).passss_error;
       else
         return null;
@@ -1184,11 +1189,25 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
    // Navigator.of(context).pop();
 //    If all data are correct then save data to out variables
 
+ 
+  int days = DateTime.parse(_daterange.substring(13, 23)).millisecondsSinceEpoch - DateTime.parse(_daterange.substring(0, 10)).millisecondsSinceEpoch;
+  
+
+  double bae = (days / 1000).toDouble();
+
+
+  _nbjour = (bae / 86400).toDouble();
+
+
+  _prixt = (int.parse(widget.price) * _nbjour).toString();
+ 
+  _dated = DateFormat('dd/MM/yyyy').format(DateTime.parse(_daterange.substring(0, 10)));
+  _datef = DateFormat('dd/MM/yyyy').format(DateTime.parse(_daterange.substring(13, 23)));
+
     startPayment();
     netErrorTransaction();
 
-    HttpPostRequest.register_request(
-            phoneNumber, confirmedNumber, phoneIsoCode, _name, _password0)
+    HttpPostRequest.reservation_request( _dated, _datef, _name, confirmedNumber.substring(1, confirmedNumber.length), widget.type, "", _prixt, widget.id)
         .then((String result) {
         print("print ::" + result.toString());
       if (result == "error") {
@@ -1198,29 +1217,7 @@ class _ReservationState extends State<Reservation> with TickerProviderStateMixin
           compteExit();
         } else {
           // log('result'+ result);
-          // Navigator.pop(context);
-          //pour le compte existant  widget.compteE();
-          _displayDialog(context, confirmedNumber, result);
-          
-      Iterable list0 = jsonDecode(result);
-       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
-   /*
-          SharedPreferencesClass.save("userinfos", response.body);
-           var userinfos = new List<UserMod>();
-           
-      Iterable list0 = jsonDecode(response.body);
-       userinfos = list0.map((model) => UserMod.fromJson(model)).toList();
-          globals.userinfos = userinfos[0];
-
-          */
-        //  sucessTansaction();
-/*
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => new bottomNavBar()),
-            (Route<dynamic> route) => false,
-          );
-          */
+          Navigator.pop(context);
         }
       }
     });

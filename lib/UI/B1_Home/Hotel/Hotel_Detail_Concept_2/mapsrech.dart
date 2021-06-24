@@ -2246,7 +2246,7 @@ class _mapsrecherState extends State<mapsrecher> {
                   Material(
                     color: Colors.transparent,
                     child: Container(
-                      height: 140.0,
+                      height: 180.0,
                       width: 110.0,
                       decoration: BoxDecoration(
                           color: Colors.white,
@@ -2260,7 +2260,7 @@ class _mapsrecherState extends State<mapsrecher> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                    padding: const EdgeInsets.only(left: 10.0, top: 8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2277,7 +2277,7 @@ class _mapsrecherState extends State<mapsrecher> {
                               overflow: TextOverflow.ellipsis,
                             )),
                         Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
+                          padding: const EdgeInsets.only(top: 4.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2811,7 +2811,7 @@ class _mapsrecherState extends State<mapsrecher> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                    padding: const EdgeInsets.only(left: 10.0, top: 5.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -2856,7 +2856,7 @@ class _mapsrecherState extends State<mapsrecher> {
                             ],
                           ),
                         ),
-                        Padding(padding: EdgeInsets.only(top: 15.0)),
+                        Padding(padding: EdgeInsets.only(top: 10.0)),
                         Container(
                             width: 150.0,
                             child: Text(

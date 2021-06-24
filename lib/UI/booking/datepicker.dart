@@ -47,9 +47,9 @@ final DateRangePickerController _controller = DateRangePickerController();
     setState(() {
       if (args.value is PickerDateRange) {
         _range =
-            DateFormat('dd/MM/yyyy').format(args.value.startDate).toString() +
+            DateFormat('yyyy-MM-dd').format(args.value.startDate).toString() +
                 ' - ' +
-                DateFormat('dd/MM/yyyy')
+                DateFormat('yyyy-MM-dd')
                     .format(args.value.endDate ?? args.value.startDate)
                     .toString();
       } else if (args.value is DateTime) {

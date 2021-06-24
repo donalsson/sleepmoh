@@ -264,7 +264,7 @@ setState(() {
                   markers: _markers,
                 ),
               ),
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.only(top: 135.0, right: 60.0),
                 child: Align(
                   alignment: Alignment.bottomRight,
@@ -288,7 +288,7 @@ setState(() {
                     ),
                   ),
                 ),
-              )
+              )*/
             ],
           ),
         ),
@@ -607,7 +607,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
               padding: const EdgeInsets.only(
                   top: 20.0, right: 20.0, left: 20.0, bottom: 40.0),
               child: Container(
-                height: 170.0,
+                height: 140.0,
                 width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -629,11 +629,11 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Container(
-                                    width: 200.0,
+                                    width: 180.0,
                                     child: Text(
                                       title,
                                       style: _txtStyleTitle.copyWith(
-                                          fontSize: 27.0),
+                                          fontSize: 20.0),
                                       overflow: TextOverflow.clip,
                                     )),
                                 Padding(
@@ -646,7 +646,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                                       Text(
                                         oCcy.format(int.parse(price)).toString() + " Fcfa",
                                         style: TextStyle(
-                                            fontSize: 20.0,
+                                            fontSize: 15.0,
                                             color: Colors.blue[300],
                                             fontWeight: FontWeight.w600,
                                             fontFamily: "Gotik"),

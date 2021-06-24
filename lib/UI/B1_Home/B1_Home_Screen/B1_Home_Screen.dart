@@ -858,7 +858,7 @@ class ItemGrid extends StatelessWidget {
                     tag: 'hero-tag-${gridItem.id}',
                     child: Material(
                       child: Container(
-                        height: mediaQueryData.size.height / 5.8,
+                        height: mediaQueryData.size.height / 6.28,
                         width: 200.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
@@ -918,7 +918,7 @@ class ItemGrid extends StatelessWidget {
                               color: Colors.black54,
                               fontFamily: "Gotik",
                               fontWeight: FontWeight.w800,
-                              fontSize: 14.0),
+                              fontSize: 13.0),
                         ),
                       ),
                       Text(
